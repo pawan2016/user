@@ -23,7 +23,18 @@
 						</div>
 						<div class="box-content">
 							<div class="row">
-								
+							<form method="post" id='form' action="<?php echo base_url('user/user_activity'); ?>" autcomplete="off"/>
+							<div class="form-group col-lg-2 showmyprint">
+                            <label class="control-label">From Date</label>
+                             <input id="right_from" class="form-control" type="text" value="<?php echo $from_date; ?>" name="right_from">
+                              </div>
+                               <div class="form-group col-lg-2 showmyprint">
+                              <label class="control-label">To Date</label>
+                                <input id="right_to" class="form-control" type="text" value="<?php echo $to_date; ?>"  name="right_to">
+                                  </div>
+                                  <button  class="btn btn-primary" style="margin-left:1%;margin-bottom:15px;margin-top:25px;" name="submit" type="submit">Submit</button>
+                                  <a id="reset_button" class="btn btn-primary" href="<?php base_url('user/user_activity'); ?>" style="margin-left:1%;margin-bottom:15px;margin-top:26px;">Reset</a>	
+                                  </form>
 							</div>
 							<div id="stockReciptTable">
 								<table id="user_activity" class="table table-striped table-bordered bootstrap-datatable datatable responsive">
@@ -59,3 +70,30 @@
     <!-- content ends -->
 		</div><!--/#content.col-md-0-->
 	</div><!--/fluid-row-->
+	<script type="text/javascript">
+$(function() {
+    $( "#right_from" ).datepicker({
+	  dateFormat: "d/mm/yy",
+      changeMonth: true,
+      numberOfMonths: 1,
+      onClose: function( selectedDate ) {
+      $( "#right_to" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+	$( "#right_from" ).datepicker({ defaultDate: new Date() });
+    $( "#right_to" ).datepicker({
+	  dateFormat: "d/mm/yy",
+      changeMonth: true,
+      numberOfMonths: 1,
+      onClose: function( selectedDate ) {
+        $( "#right_from" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+	// $('#right_from').datepicker('setDate', new Date());
+	// $('#right_to').datepicker('setDate', new Date());
+	
+	
+
+	
+});
+</script>
